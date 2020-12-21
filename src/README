@@ -1,0 +1,46 @@
+#########################################
+
+
+README-file for solar src folder
+
+Edited by Emil Levo 17.12.2017
+
+
+#########################################
+
+
+CONTENTS:
+The src directory consists of the files:
+ -ingredients.f90
+    Vector definitions and subroutine for reading the input file
+
+ -calcforces.f90
+    Calculates the forces for input objects
+
+ -velverlet.f90
+    Predicts next positions and velocities
+
+ -start.f90
+    Includes subroutine for running simulation, writing to output file, printing to screen  
+
+ -main.f90
+    Calls the readin subroutine from the ingredients module and run subroutine from the start module
+
+ -compile.sh
+    Contains the commands to compile the code into the executable "solar", commands presented below
+
+ -README
+    You are reading it
+
+
+COMPILATION:
+To compile the code either run the script compile.sh (bash compile.sh) or use the commands:
+
+  gfortran -c ingredients.f90 velverlet.f90 calcforces.f90 start.f90 main.f90
+  gfortran -o solar ingredients.o velverlet.o calcforces.o start.o main.o
+
+  rm *.o
+  rm *.mod
+
+  mv solar ../run/
+

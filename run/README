@@ -1,0 +1,78 @@
+#########################################
+
+
+README-file for solar run folder
+
+Edited by Emil Levo 17.12.2017
+
+
+#########################################
+
+
+CONTENTS:
+The run directory consists initially of the files:
+  -input.dat
+     Contains input parameters and data for the simulation
+
+  -solar
+     Executable for the simulations (given that the compilation was succesful)
+
+  -output.dat
+     Output data for the simulations (given that a succesful simulation has been accomplished)
+
+  -errors.out
+     Error message for the simulations (given that a simulation has been accomplished, empty if no errors)
+
+  -README
+     You are reading it
+
+
+RUN INSTRUCTIONS:
+To run a succesful solar simulation this directory needs to include the input.dat file and solar executable. The simulation is started by running with "./solar"
+
+The input.dat needs to contain the following parameters (format):
+   -Number of objects, has to be positive integer (i2)
+
+   -Timestep, has to be positive real unit in seconds (*)
+
+   -Number of simulation steps, has to be positive integer (*)
+
+   -Every n:th step printed on screen, has to be positive integer (*)
+
+   -Every n:th step written to output.dat, has to be positive integer (*)
+   
+   -Object (planet) data: name,index,mass (kg),x (km),y (km),z (km),vx (km/s),vy (km/s),vz (km/s)  (a10,i3,e10.3,e10.3,e10.3,e10.3,e10.3,e10.3,e10.3)
+    example: Sun        1 1.988E+30 2.843E+05 9.041E+05 -1.833E+4 -9.889E-3 8.899E-03 2.381E-04
+
+
+Note that the input file needs to contain these parameters exactly, otherwise the run will fail.
+
+The number of objects dictates how many lines are read in after the fifth line. If you for example want to simulate only the sun and jupiter, the input needs to look like (note that the lines after jupiter do not matter, they could also be empty):
+
+2
+100.0
+31558150
+1000000
+10000
+Sun        1 1.988E+30 2.843E+05 9.041E+05 -1.833E+4 -9.889E-3 8.899E-03 2.381E-04
+Jupiter    6 1.898E+27 -6.486E+8 -4.885E+8 1.653E+07 7.707E+00 -9.816E+0 -1.316E-1
+Mercury    2 3.285E+23 -2.242E+6 4.696E+07 3.977E+06 -5.842E+1 -8.882E-1 5.286E+00
+Venus      3 4.867E+24 -3.921E+7 -1.001E+8 8.742E+05 3.236E+01 -1.288E+1 -2.045E+0
+Earth      4 3.972E+24 1.835E+07 1.470E+08 -2.499E+4 -3.006E+1 3.562E+00 1.929E-04
+Mars       5 6.390E+23 -2.441E+8 -2.530E+7 5.430E+06 3.478E+00 -2.201E+1 -5.468E-1
+
+If one wants to simulate all the objects above, just change the first line to 6.
+
+After a succesful run the directory should have an output.dat file. The system can be visualised with the output.dat file for example with OVITO. The number of frames that are saved into the output is dictated by the input file. The ouput contains the number of objects, framenumber, time, number of step, total energy of the system and object data (position and velocity). An example frame with the data points of each object looks for example like:
+
+9
+Framenumber:     3 Time [yr]:   0.000 Step:       3000 Energy:  -0.198E+30
+Sun         1  0.284E+06  0.904E+06 -0.183E+05 -0.989E-02  0.890E-02  0.238E-03
+Mercury     2 -0.242E+07  0.470E+08  0.399E+07 -0.584E+02 -0.107E+01  0.527E+01
+Venus       3 -0.391E+08 -0.100E+09  0.868E+06  0.324E+02 -0.128E+02 -0.205E+01
+Earth       4  0.183E+08  0.147E+09 -0.250E+05 -0.301E+02  0.354E+01  0.194E-03
+Mars        5 -0.244E+09 -0.254E+08  0.543E+07  0.348E+01 -0.220E+02 -0.547E+00
+Jupiter     6 -0.649E+09 -0.488E+09  0.165E+08  0.771E+01 -0.982E+01 -0.132E+00
+Saturn      7 -0.622E+07 -0.150E+10  0.264E+08  0.913E+01 -0.702E-01 -0.362E+00
+Uranus      8  0.266E+10  0.135E+10 -0.294E+08 -0.313E+01  0.576E+01  0.617E-01
+Neptune     9  0.429E+10 -0.129E+10 -0.722E+08  0.153E+01  0.524E+01 -0.144E+00
