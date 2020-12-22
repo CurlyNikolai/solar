@@ -120,7 +120,7 @@ module define
       write(2,'(a)') '**** Error in reading write step interval in read.in'
     end if
     print '(a,i8)',"Save every nstep = ",savestep
-    print *,
+    print *
     do i=1,nob
       if (i>nob .or. ios<0) exit
       read(1,'(a10,i3,e10.3,e10.3,e10.3,e10.3,e10.3,e10.3,e10.3)',iostat=ios) names(i),ind(i),m(i),posx,posy,posz,vx,vy,vz
@@ -136,7 +136,7 @@ module define
       print '(a,e10.3)',"Mass [kg]: ",m(i)
       print '(a,e10.3,e10.3,e10.3)',"Initial position (x,y) [km]: ",pos(i)%x,pos(i)%y,pos(i)%z
       print '(a,e10.3,e10.3,e10.3)',"Initial velocity (x,y) [km/s]: ",v(i)%x,v(i)%y,v(i)%z
-      print *,
+      print *
     end do
 
     close(1)

@@ -32,7 +32,7 @@ program test
   end do
 
   !START THE SIMULATION
-  print *,
+  print *
   print *, "----------------"
   print *, "BEGIN SIMULATION"
   print *, "----------------"
